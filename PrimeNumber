@@ -1,0 +1,41 @@
+
+// count of primes in given range.
+
+let MAX = 10000;
+let prefix = [];
+
+function buildPrefix() {
+
+    let prime = [];
+    for (let p = 1; p <= MAX + 1; p++) {
+        prime[p] = true;
+    }
+    for (let p = 2; p * p <= MAX; p++) {
+
+        if (prime[p] == true) {
+
+            // Update all multiples of p
+            for (let i = p * 2; i <= MAX; i += p)
+                prime[i] = false;
+        }
+    }
+
+    // Build prefix array
+    prefix[0] = prefix[1] = 0;
+    for (let p = 2; p <= MAX; p++) {
+        prefix[p] = prefix[p - 1];
+        if (prime[p])
+            prefix[p]++;
+    }
+}
+function query(L, R) {
+    return prefix[R] - prefix[L - 1];
+}
+
+buildPrefix();
+let L = 5, R = 10;
+console.log(query(L, R) );
+
+L = 1; R = 10;
+console.log(query(L, R));
+

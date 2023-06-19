@@ -1,8 +1,5 @@
 function count_ht(s, N)
 {
-     
-    // Check if initially all the
-    // coins are facing towards head
     var p = [0,0];
     if(s == 'H')
     {
@@ -21,7 +18,6 @@ function count_ht(s, N)
     return p;
 }
  
-// Driver code
 var C = 'H';
 var N = 5;
  
